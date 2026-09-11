@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLOUDCHATE - Login</title>
+  <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* Background gradient matching colorful splash theme */
+      background: radial-gradient(circle at center, #2b82c9 0%, #113359 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Colorful Splash Background Simulation */
+    body::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 182, 0, 0.6), transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(235, 51, 153, 0.6), transparent 40%),
+        radial-gradient(circle at 10% 80%, rgba(0, 201, 167, 0.6), transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(255, 87, 34, 0.6), transparent 40%);
+      filter: blur(50px);
+      z-index: 1;
+    }
+
+    /* Main Glass Card Container */
+    .login-card {
+      position: relative;
+      z-index: 2;
+      width: 380px;
+      padding: 40px 30px;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 20px;
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2),
+                  inset 0 0 15px rgba(255, 255, 255, 0.4);
+      text-align: center;
+    }
+
+    /* Logo Styling */
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .cloud-icon {
+      width: 70px;
+      height: 45px;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      border-radius: 50px;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cloud-icon::before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: 12px;
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      border-radius: 50%;
+    }
+
+    .cloud-icon::after {
+      content: '';
+      position: absolute;
+      top: -8px;
+      right: 12px;
+      width: 25px;
+      height: 25px;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      border-radius: 50%;
+    }
+
+    .cloud-icon span {
+      position: relative;
+      z-index: 3;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .app-title {
+      margin-top: 15px;
+      font-size: 24px;
+      font-weight: 800;
+      color: #0b50a1;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-shadow: 0 1px 1px rgba(255,255,255,0.6);
+    }
+
+    /* Form Fields */
+    .input-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: 700;
+      font-size: 14px;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+
+    .glass-input {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(5px);
+      outline: none;
+      color: #000;
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1),
+                  0 2px 5px rgba(255, 255, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .glass-input::placeholder {
+      color: #ffffff;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    .glass-input:focus {
+      background: rgba(255, 255, 255, 0.5);
+      border-color: #007bff;
+    }
+
+    /* Button Styling */
+    .sign-in-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(180deg, #378ad8 0%, #185a9d 100%);
+      border: 1px solid #185a9d;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      transition: all 0.2s ease;
+      margin-top: 10px;
+    }
+
+    .sign-in-btn:hover {
+      background: linear-gradient(180deg, #4095e5 0%, #1a62ab 100%);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .sign-in-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer Text */
+    .footer-text {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #111;
+      font-weight: 600;
+    }
+
+    .footer-text a {
+      color: #0056b3;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <!-- Logo Section -->
+    <div class="logo-container">
+      <div class="cloud-icon">
+        <span>C</span>
+      </div>
+      <h1 class="app-title">CLOUDCHATE</h1>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="username">Email, Username, phone</label>
+        <input 
+          type="text" 
+          id="username" 
+          class="glass-input" 
+          placeholder="**name@example.com**" 
+          required
+        >
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          class="glass-input" 
+          placeholder="••••••••" 
+          required
+        >
+      </div>
+
+      <button type="submit" class="sign-in-btn">Sign In</button>
+    </form>
+
+    <!-- Links Section -->
+    <div class="footer-text">
+      I have already account? <a href="#">Create new account</a>
+    </div>
+  </div>
+
+  <!-- JavaScript Functionality -->
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if(username && password) {
+        alert('Logging in with: ' + username);
+        // Yahan aap apna login API request call kar sakte hain.
+      } else {
+        alert('Please fill in all fields');
+      }
+    });
+  </script>
+
+</body>
+</html>
