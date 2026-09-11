@@ -9,100 +9,188 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
     }
 
     body {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
+      /* Vibrant Gulal Powder Background */
+      background: radial-gradient(circle at center, #2fbbe8 0%, #157cb5 40%, #0d5480 100%),
+                  radial-gradient(circle at top left, #ff3399 0%, transparent 40%),
+                  radial-gradient(circle at bottom right, #ffcc00 0%, transparent 40%),
+                  radial-gradient(circle at bottom left, #00cc66 0%, transparent 40%);
+      background-blend-mode: screen, overlay, hard-light, normal;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .login-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 40px;
+    /* Ambient Powder Particles Effect using CSS */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 0, 128, 0.6) 0%, transparent 35%),
+        radial-gradient(circle at 80% 20%, rgba(0, 204, 255, 0.6) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(255, 204, 0, 0.7) 0%, transparent 35%),
+        radial-gradient(circle at 15% 85%, rgba(0, 204, 102, 0.6) 0%, transparent 35%);
+      filter: blur(40px);
+      z-index: 0;
+    }
+
+    /* Main 3D Glass Card Container */
+    .glass-card {
+      position: relative;
+      z-index: 1;
       width: 100%;
-      max-width: 400px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      max-width: 440px;
+      padding: 35px 30px;
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 16px;
+      
+      /* Multi-layered 3D Glass Borders & Shadows */
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.25),
+        inset 0 2px 3px rgba(255, 255, 255, 0.8),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.15),
+        inset 0 0 15px rgba(255, 255, 255, 0.3);
+      text-align: left;
     }
 
-    .brand-header {
+    /* Logo & Header Styling */
+    .brand-section {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
-    .brand-header h1 {
-      color: #38bdf8;
-      font-size: 2rem;
-      letter-spacing: 2px;
+    .cloud-logo {
+      width: 85px;
+      height: 55px;
+      margin: 0 auto 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .brand-header p {
-      color: #94a3b8;
-      font-size: 0.9rem;
-      margin-top: 5px;
+    /* 3D Glass Metallic Cloud Icon SVG Styling */
+    .cloud-logo svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0px 4px 6px rgba(0, 90, 160, 0.4));
     }
 
+    .brand-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #0077c8;
+      letter-spacing: 1.5px;
+      text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.8), 0px 2px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Form Fields Styling */
     .form-group {
       margin-bottom: 20px;
     }
 
     .form-group label {
       display: block;
-      color: #cbd5e1;
-      font-size: 0.85rem;
+      color: #000000;
+      font-weight: 700;
+      font-size: 0.95rem;
       margin-bottom: 8px;
     }
 
-    .form-group input {
+    /* 3D Glass Inputs */
+    .glass-input {
       width: 100%;
-      padding: 12px 16px;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid #334155;
-      border-radius: 8px;
-      color: #fff;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .form-group input:focus {
-      border-color: #38bdf8;
-    }
-
-    .btn-submit {
-      width: 100%;
-      padding: 12px;
-      background: #0284c7;
-      border: none;
-      border-radius: 8px;
-      color: #fff;
-      font-weight: 600;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 10px;
       font-size: 1rem;
+      font-weight: bold;
+      color: #ffffff;
+      outline: none;
+      box-shadow: 
+        inset 0 3px 6px rgba(0, 0, 0, 0.2),
+        inset 0 -1px 2px rgba(255, 255, 255, 0.5),
+        0 2px 4px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+    }
+
+    .glass-input::placeholder {
+      color: #ffffff;
+      font-weight: bold;
+      opacity: 0.95;
+    }
+
+    .glass-input:focus {
+      background: rgba(255, 255, 255, 0.35);
+      border-color: #ffffff;
+      box-shadow: 
+        inset 0 3px 6px rgba(0, 0, 0, 0.25),
+        0 0 8px rgba(255, 255, 255, 0.8);
+    }
+
+    /* 3D Glass Sign-In Button */
+    .btn-3d-glass {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      background: linear-gradient(180deg, #3399ff 0%, #0066cc 100%);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 10px;
+      color: #ffffff;
+      font-size: 1.15rem;
+      font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s;
+      box-shadow: 
+        0 6px 15px rgba(0, 51, 102, 0.4),
+        inset 0 2px 2px rgba(255, 255, 255, 0.6),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s ease;
     }
 
-    .btn-submit:hover {
-      background: #0369a1;
+    .btn-3d-glass:hover {
+      background: linear-gradient(180deg, #4da6ff 0%, #0077e6 100%);
+      transform: translateY(-1px);
+      box-shadow: 
+        0 8px 20px rgba(0, 51, 102, 0.5),
+        inset 0 2px 3px rgba(255, 255, 255, 0.8);
     }
 
+    .btn-3d-glass:active {
+      transform: translateY(1px);
+      box-shadow: 
+        0 3px 8px rgba(0, 51, 102, 0.4),
+        inset 0 2px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Bottom Link Footer */
     .form-footer {
       text-align: center;
-      margin-top: 20px;
-      font-size: 0.85rem;
-      color: #94a3b8;
+      margin-top: 22px;
+      font-size: 0.9rem;
+      color: #000000;
+      font-weight: 600;
     }
 
     .form-footer a {
-      color: #38bdf8;
+      color: #0066cc;
+      font-weight: 700;
       text-decoration: none;
+      margin-left: 4px;
     }
 
     .form-footer a:hover {
@@ -112,36 +200,60 @@
 </head>
 <body>
 
-  <div class="login-card">
-    <div class="brand-header">
-      <h1>CLOUDCHATE</h1>
-      <p>Connect seamlessly in the cloud</p>
+  <div class="glass-card">
+    <!-- Logo & Title Header -->
+    <div class="brand-section">
+      <div class="cloud-logo">
+        <svg viewBox="0 0 64 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#70c5ff" />
+              <stop offset="50%" stop-color="#1d82d2" />
+              <stop offset="100%" stop-color="#0c4b8e" />
+            </linearGradient>
+            <linearGradient id="cloudBorder" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+              <stop offset="100%" stop-color="#1d82d2" stop-opacity="0.4" />
+            </linearGradient>
+          </defs>
+          <!-- 3D Cloud Base Shapes -->
+          <path d="M18 40 C10 40 4 34 4 26 C4 19 9 14 16 13 C18 7 24 2 32 2 C41 2 48 8 50 15 C56 16 60 21 60 27 C60 34 54 40 46 40 Z" 
+                fill="url(#cloudGrad)" stroke="url(#cloudBorder)" stroke-width="2.5"/>
+          <!-- Inner C Emblem Accent -->
+          <path d="M35 17 C28 17 23 22 23 28 C23 34 28 39 35 39 C39 39 42 37 44 34" 
+                stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <h1 class="brand-title">CLOUDCHATE</h1>
     </div>
 
+    <!-- Login Form -->
     <form id="loginForm">
       <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="name@example.com" required>
+        <label for="identity">Email, Username, phone</label>
+        <input type="text" id="identity" class="glass-input" placeholder="**name@example.com**" required>
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="••••••••" required>
+        <input type="password" id="password" class="glass-input" placeholder="••••••••" required>
       </div>
 
-      <button type="submit" class="btn-submit">Sign In</button>
+      <button type="submit" class="btn-3d-glass">Sign In</button>
     </form>
 
+    <!-- Footer Text Links -->
     <div class="form-footer">
-      <p>Don't have an account? <a href="#">Create one</a></p>
+      <span>I have alray account?</span>
+      <a href="#">Create new account</a>
     </div>
   </div>
 
   <script>
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      const email = document.getElementById('email').value;
-      alert('Login attempt for: ' + email);
+      const inputVal = document.getElementById('identity').value;
+      alert('Logging in with: ' + inputVal);
     });
   </script>
 
