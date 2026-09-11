@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Cloudchate - Future of Next-Gen Communication</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* 3D Glass Square Container Cards */
+    .glass-card-3d {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.6),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    /* 3D Glass Text Effect inside Square Boxes */
+    .glass-text-3d {
+      color: rgba(255, 255, 255, 0.95);
+      text-shadow: 
+        0 1px 0 rgba(255, 255, 255, 0.5),
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 15px rgba(59, 130, 246, 0.4);
+      letter-spacing: 0.5px;
+    }
+
+    /* Sub-Boxes 3D Glass Effect */
+    .glass-box-inner {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1), 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0f19;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3b82f6;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-[#0b0f19] text-gray-200 min-h-screen relative overflow-x-hidden font-sans leading-relaxed">
+
+  <!-- Background Colorful Glow Effects -->
+  <div class="fixed top-10 left-10 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-[120px] opacity-20 pointer-events-none"></div>
+  <div class="fixed bottom-10 right-10 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[120px] opacity-20 pointer-events-none"></div>
+  <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-500 rounded-full mix-blend-screen filter blur-[100px] opacity-15 pointer-events-none"></div>
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-50 backdrop-blur-md border-b border-white/10 bg-[#0b0f19]/80">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-tr from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 border border-white/20">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+          </svg>
+        </div>
+        <span class="text-2xl font-black tracking-wider glass-text-3d">Cloudchate</span>
+      </div>
+      <a href="index.html" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-blue-600/80 hover:bg-blue-600 transition-all shadow-lg shadow-blue-500/30 border border-white/20">
+        Back to Login
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Article Wrapper -->
+  <main class="max-w-4xl mx-auto px-6 py-12 relative z-10">
+    
+    <!-- Hero Banner (3D Glass Square Box) -->
+    <div class="glass-card-3d p-8 md:p-12 rounded-2xl mb-10 text-center relative overflow-hidden">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 glass-text-3d tracking-tight">
+        Welcome to Cloudchate
+      </h1>
+      <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+        Revolutionizing digital messaging with ultra-secure cloud connectivity, real-time sync, and modern 3D glass aesthetics.
+      </p>
+    </div>
+
+    <!-- Article Content Sections in 3D Glass Square Boxes -->
+    <article class="space-y-10 text-gray-300 text-base md:text-lg">
+
+      <!-- Section 1 -->
+      <section class="glass-card-3d p-8 rounded-2xl">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 border-b border-white/10 pb-3 glass-text-3d">
+          1. Cloudchate Kya Hai? (Overview)
+        </h2>
+        <p class="mb-4">
+          <strong>Cloudchate</strong> ek next-generation messaging aur communication platform hai, jise aaj ke aadhunik digital yug ki zarooraton ko dhyan me rakhkar design kiya gaya hai. Chahe aap apne dosto se private chat karna chahte ho, office work ke liye team collaboration chahte ho, ya phir high-quality audio/video calls karna chahte ho — Cloudchate aapko ek hi jagah par lightning-fast speed aur un-hackable security ke saath ye sabhi features provide karta hai.
+        </p>
+        <p>
+          Aapne market me WhatsApp, Telegram, ya Signal jaise kayi messaging apps dekhe honge, lekin Cloudchate in sabhi se bilkul alag hai. Iska sabse bada reason hai iska <strong>Cloud-Native Architecture</strong> aur <strong>3D Glassmorphism Design System</strong>.
+        </p>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="glass-card-3d p-8 rounded-2xl">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 border-b border-white/10 pb-3 glass-text-3d">
+          2. Hamara Vision Aur Mission
+        </h2>
+        <p class="mb-4">
+          Hamara mission bilkul saaf hai — <strong>"Digital Communication ko Behad Aasaan, Secure aur Fast Banana."</strong> Aaj ke samay me online privacy sabse bada concern ban chuka hai. User ka data leak hona, third-party companies dwara chats ko track karna, aur slow servers ki wajah se messages drop hona behad aam baat ho gayi hai.
+        </p>
+        <p>
+          Cloudchate is problem ko hamesha ke liye khatam karne ke liye banaya gaya hai. Hamara vision ek aisi digital duniya ka nirman karna hai jahan har insaan ka data 100% private rahe.
+        </p>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="glass-card-3d p-8 rounded-2xl">
+        <h2 class="text-2xl md:text-3xl font-bold mb-6 border-b border-white/10 pb-3 glass-text-3d">
+          3. Cloudchate Ke Key Features
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="glass-box-inner p-6 rounded-xl">
+            <h3 class="text-xl font-bold text-blue-400 mb-2 glass-text-3d">🔒 End-to-End Encryption</h3>
+            <p class="text-sm">
+              Aapka har message, voice note, photo, aur file 256-bit AES End-to-End encryption se protected hai.
+            </p>
+          </div>
+
+          <div class="glass-box-inner p-6 rounded-xl">
+            <h3 class="text-xl font-bold text-indigo-400 mb-2 glass-text-3d">☁️ Ultra-Fast Cloud Sync</h3>
+            <p class="text-sm">
+              Cloudchate ka apna high-speed cloud infrastructure hai. Aap ek hi samay par multiple devices se access kar sakte hain.
+            </p>
+          </div>
+
+          <div class="glass-box-inner p-6 rounded-xl">
+            <h3 class="text-xl font-bold text-purple-400 mb-2 glass-text-3d">📞 4K Audio & Video Calls</h3>
+            <p class="text-sm">
+              Low network speed par bhi clear aur HD audio/video calling experience with noise-cancellation.
+            </p>
+          </div>
+
+          <div class="glass-box-inner p-6 rounded-xl">
+            <h3 class="text-xl font-bold text-pink-400 mb-2 glass-text-3d">📁 Large File Sharing</h3>
+            <p class="text-sm">
+              Aap bina kisi compression ke high-quality videos, PDFs, aur zip files aasaani se share kar sakte hain.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="glass-card-3d p-8 rounded-2xl">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 border-b border-white/10 pb-3 glass-text-3d">
+          4. Security Aur Privacy Model
+        </h2>
+        <ul class="list-disc list-inside space-y-3 pl-2">
+          <li><strong class="glass-text-3d">Zero-Knowledge Architecture:</strong> Hum aapke passwords ya decryption keys store nahi karte.</li>
+          <li><strong class="glass-text-3d">Self-Destructing Messages:</strong> Sensitive messages par automatic delete timer set karein.</li>
+          <li><strong class="glass-text-3d">Two-Factor Authentication (2FA):</strong> Extra layer security for account protection.</li>
+        </ul>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="glass-card-3d p-8 rounded-2xl text-center">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 glass-text-3d">
+          Aaiye, Future Ka Hissa Banein!
+        </h2>
+        <p class="mb-6 max-w-xl mx-auto">
+          Cloudchate sirf ek messaging app nahi, balki digital freedom ki ek nayi shuruaat hai.
+        </p>
+        <a href="index.html" class="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 font-bold text-white rounded-xl shadow-xl shadow-blue-500/30 hover:scale-105 transition-all duration-200 glass-text-3d">
+          Get Started Now
+        </a>
+      </section>
+
+    </article>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 py-8 text-center text-sm text-gray-400 relative z-10 bg-[#0b0f19]/90">
+    <p class="glass-text-3d">© 2026 Cloudchate Inc. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
