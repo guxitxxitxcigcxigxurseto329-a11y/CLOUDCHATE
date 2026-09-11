@@ -150,7 +150,7 @@
 
   </div>
 
-  <!-- Firebase Integration Script -->
+ <!-- Firebase Integration Script -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -184,8 +184,10 @@
       try {
         await signInWithEmailAndPassword(auth, email, password);
         alert("Login Successful!");
-        // Successful login ke baad jahan redirect karna ho wahan link badal dein:
-        // window.location.href = "dashboard.html";
+        
+        // 👉 YAHAN PAR BADLAAV KIYA GAYA HAI 👈
+        window.location.href = "home.html";
+
       } catch (error) {
         alert("Error: " + error.message);
         btn.innerText = "LOG IN";
