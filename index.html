@@ -3,55 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CLOUDCHATE - Login</title>
+  <title>CLOUDCHATE - Glass Login</title>
   <style>
-    /* Global Reset */
+    /* Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
     }
 
+    /* 1. Sharp Colorful Background (No Blur) */
     body {
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      /* Background gradient matching colorful splash theme */
-      background: radial-gradient(circle at center, #2b82c9 0%, #113359 100%);
+      background: #0d1b2a;
       position: relative;
       overflow: hidden;
     }
 
-    /* Colorful Splash Background Simulation */
-    body::before {
-      content: '';
+    /* Sharp Colorful Splashes on Background */
+    .bg-splash-1 {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 20% 20%, rgba(255, 182, 0, 0.6), transparent 40%),
-        radial-gradient(circle at 80% 20%, rgba(235, 51, 153, 0.6), transparent 40%),
-        radial-gradient(circle at 10% 80%, rgba(0, 201, 167, 0.6), transparent 40%),
-        radial-gradient(circle at 85% 80%, rgba(255, 87, 34, 0.6), transparent 40%);
-      filter: blur(50px);
-      z-index: 1;
+      top: -10%;
+      left: -5%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, #ff007f 0%, #7928ca 70%, transparent 100%);
+      border-radius: 50%;
     }
 
-    /* Main Glass Card Container */
-    .login-card {
+    .bg-splash-2 {
+      position: absolute;
+      bottom: -10%;
+      right: -5%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #00f2fe 0%, #4facfe 70%, transparent 100%);
+      border-radius: 50%;
+    }
+
+    .bg-splash-3 {
+      position: absolute;
+      top: 20%;
+      right: 15%;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, #ff0055 0%, #ffcc00 80%, transparent 100%);
+      transform: rotate(45deg);
+    }
+
+    .bg-splash-4 {
+      position: absolute;
+      bottom: 15%;
+      left: 10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, #00ff87 0%, #60efff 80%, transparent 100%);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    }
+
+    /* 2. Square Blurred Glass Container */
+    .login-square {
       position: relative;
-      z-index: 2;
+      z-index: 10;
       width: 380px;
-      padding: 40px 30px;
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 20px;
-      border: 1.5px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2),
-                  inset 0 0 15px rgba(255, 255, 255, 0.4);
+      padding: 35px 30px;
+      background: rgba(255, 255, 255, 0.15);
+      /* Heavy Glass Blur */
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-radius: 12px; /* Square shape with subtle corners */
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5),
+                  inset 0 0 20px rgba(255, 255, 255, 0.3);
       text-align: center;
     }
 
@@ -66,10 +93,10 @@
     .cloud-icon {
       width: 70px;
       height: 45px;
-      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
       border-radius: 50px;
       position: relative;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.8);
+      box-shadow: 0 5px 15px rgba(0,114,255,0.4);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -78,11 +105,11 @@
     .cloud-icon::before {
       content: '';
       position: absolute;
-      top: -15px;
+      top: -14px;
       left: 12px;
       width: 30px;
       height: 30px;
-      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
       border-radius: 50%;
     }
 
@@ -91,32 +118,30 @@
       position: absolute;
       top: -8px;
       right: 12px;
-      width: 25px;
-      height: 25px;
-      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
       border-radius: 50%;
     }
 
     .cloud-icon span {
       position: relative;
-      z-index: 3;
-      color: white;
-      font-weight: bold;
+      z-index: 2;
+      color: #fff;
+      font-weight: 900;
       font-size: 20px;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
 
     .app-title {
-      margin-top: 15px;
-      font-size: 24px;
+      margin-top: 12px;
+      font-size: 26px;
       font-weight: 800;
-      color: #0b50a1;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      text-shadow: 0 1px 1px rgba(255,255,255,0.6);
+      color: #ffffff;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
     }
 
-    /* Form Fields */
+    /* Form & Input Styling */
     .input-group {
       text-align: left;
       margin-bottom: 20px;
@@ -124,75 +149,90 @@
 
     .input-group label {
       display: block;
-      font-weight: 700;
-      font-size: 14px;
-      color: #1a1a1a;
-      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #ffffff;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    .glass-input {
+    /* 3. Diamond Design Input Boxes */
+    .diamond-input-wrapper {
+      position: relative;
       width: 100%;
-      padding: 12px 15px;
+    }
+
+    .diamond-input {
+      width: 100%;
+      padding: 14px 20px;
       font-size: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(5px);
+      color: #fff;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
       outline: none;
-      color: #000;
-      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1),
-                  0 2px 5px rgba(255, 255, 255, 0.5);
+      /* Diamond Bevel Edge Cut */
+      clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 50%, calc(100% - 12px) 100%, 12px 100%, 0% 50%);
+      backdrop-filter: blur(5px);
       transition: all 0.3s ease;
     }
 
-    .glass-input::placeholder {
-      color: #ffffff;
-      font-weight: 600;
-      opacity: 0.9;
+    .diamond-input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
     }
 
-    .glass-input:focus {
-      background: rgba(255, 255, 255, 0.5);
-      border-color: #007bff;
+    .diamond-input:focus {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: #00f2fe;
+      box-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
     }
 
-    /* Button Styling */
-    .sign-in-btn {
+    /* 4. 3D Colorful Login Button */
+    .btn-3d-wrapper {
+      position: relative;
+      margin-top: 15px;
+    }
+
+    .btn-3d {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       font-size: 16px;
-      font-weight: bold;
-      color: #fff;
-      background: linear-gradient(180deg, #378ad8 0%, #185a9d 100%);
-      border: 1px solid #185a9d;
-      border-radius: 8px;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
       cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 
-                  inset 0 1px 0 rgba(255, 255, 255, 0.4);
-      transition: all 0.2s ease;
-      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      /* Vibrant Multi-color Gradient */
+      background: linear-gradient(135deg, #ff007f 0%, #7928ca 50%, #00f2fe 100%);
+      /* 3D Depth Shadow Effect */
+      box-shadow: 0 8px 0 #4a0080, 
+                  0 15px 20px rgba(0, 0, 0, 0.4),
+                  inset 0 2px 3px rgba(255, 255, 255, 0.6);
+      transition: all 0.15s ease-in-out;
     }
 
-    .sign-in-btn:hover {
-      background: linear-gradient(180deg, #4095e5 0%, #1a62ab 100%);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    /* Hover & Active 3D Press Effect */
+    .btn-3d:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 8px 0 #4a0080, 0 18px 25px rgba(255, 0, 127, 0.4);
     }
 
-    .sign-in-btn:active {
-      transform: translateY(1px);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    .btn-3d:active {
+      transform: translateY(6px);
+      box-shadow: 0 2px 0 #4a0080, 0 5px 10px rgba(0, 0, 0, 0.4);
     }
 
-    /* Footer Text */
+    /* Footer Links */
     .footer-text {
-      margin-top: 20px;
+      margin-top: 22px;
       font-size: 13px;
-      color: #111;
-      font-weight: 600;
+      color: #ffffff;
     }
 
     .footer-text a {
-      color: #0056b3;
+      color: #00f2fe;
       text-decoration: none;
       font-weight: 700;
     }
@@ -204,8 +244,16 @@
 </head>
 <body>
 
-  <div class="login-card">
-    <!-- Logo Section -->
+  <!-- Sharp Non-Blurred BG Splashes -->
+  <div class="bg-splash-1"></div>
+  <div class="bg-splash-2"></div>
+  <div class="bg-splash-3"></div>
+  <div class="bg-splash-4"></div>
+
+  <!-- Square Blurred Glass Container -->
+  <div class="login-square">
+    
+    <!-- Logo -->
     <div class="logo-container">
       <div class="cloud-icon">
         <span>C</span>
@@ -216,34 +264,40 @@
     <!-- Login Form -->
     <form id="loginForm">
       <div class="input-group">
-        <label for="username">Email, Username, phone</label>
-        <input 
-          type="text" 
-          id="username" 
-          class="glass-input" 
-          placeholder="**name@example.com**" 
-          required
-        >
+        <label for="username">Email, Username, Phone</label>
+        <div class="diamond-input-wrapper">
+          <input 
+            type="text" 
+            id="username" 
+            class="diamond-input" 
+            placeholder="name@example.com" 
+            required
+          >
+        </div>
       </div>
 
       <div class="input-group">
         <label for="password">Password</label>
-        <input 
-          type="password" 
-          id="password" 
-          class="glass-input" 
-          placeholder="••••••••" 
-          required
-        >
+        <div class="diamond-input-wrapper">
+          <input 
+            type="password" 
+            id="password" 
+            class="diamond-input" 
+            placeholder="••••••••" 
+            required
+          >
+        </div>
       </div>
 
-      <button type="submit" class="sign-in-btn">Sign In</button>
+      <div class="btn-3d-wrapper">
+        <button type="submit" class="btn-3d">Sign In</button>
+      </div>
     </form>
 
-    <!-- Links Section -->
     <div class="footer-text">
-      I have already account? <a href="#">Create new account</a>
+      I have an account? <a href="#">Create new account</a>
     </div>
+
   </div>
 
   <!-- JavaScript Functionality -->
@@ -255,10 +309,9 @@
       const password = document.getElementById('password').value;
 
       if(username && password) {
-        alert('Logging in with: ' + username);
-        // Yahan aap apna login API request call kar sakte hain.
+        alert('Logging in to CLOUDCHATE as: ' + username);
       } else {
-        alert('Please fill in all fields');
+        alert('Please fill out all fields.');
       }
     });
   </script>
