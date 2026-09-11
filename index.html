@@ -104,16 +104,18 @@
 
     <!-- MAIN 3D GLASS SQUARE BOX -->
     <div class="glass-card w-full p-8 rounded-3xl mb-6">
-      <form class="space-y-6" onsubmit="event.preventDefault();">
+      <form id="login-form" class="space-y-6">
         
         <div>
           <label class="block text-xs font-bold mb-2 ml-1 uppercase tracking-wide glass-text-3d">
-            Gmail, Phone no, Username
+            Gmail / Email
           </label>
           <input 
-            type="text" 
-            placeholder="Gmail, Phone no, Username daalein" 
+            type="email" 
+            id="login-email"
+            placeholder="Gmail daalein" 
             class="glass-input-3d w-full px-4 py-4 rounded-2xl text-sm text-white placeholder-gray-400 outline-none"
+            required
           >
         </div>
 
@@ -123,12 +125,14 @@
           </label>
           <input 
             type="password" 
+            id="login-password"
             placeholder="••••••••" 
             class="glass-input-3d w-full px-4 py-4 rounded-2xl text-sm text-white placeholder-gray-400 outline-none"
+            required
           >
         </div>
 
-        <button type="submit" class="glass-btn-3d w-full py-4 rounded-2xl font-bold text-base text-white tracking-wider mt-2 glass-text-3d">
+        <button type="submit" id="login-btn" class="glass-btn-3d w-full py-4 rounded-2xl font-bold text-base text-white tracking-wider mt-2 glass-text-3d uppercase">
           LOG IN
         </button>
       </form>
@@ -139,13 +143,56 @@
       <a href="about.html" class="text-gray-400 hover:text-white font-medium transition-colors duration-200 underline underline-offset-4">
         About Cloudchate
       </a>
-      <!-- Updated Link to open signup.html page -->
       <a href="signup.html" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-200">
         Create New Account
       </a>
     </div>
 
   </div>
+
+  <!-- Firebase Integration Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // Aapki Firebase Configuration Keys
+    const firebaseConfig = {
+      apiKey: "AIzaSyC7iWZ0SfKWjii-zJXYZ7HPn9T38W3UIvA",
+      authDomain: "cloudchate.firebaseapp.com",
+      projectId: "cloudchate",
+      storageBucket: "cloudchate.firebasestorage.app",
+      messagingSenderId: "154786243659",
+      appId: "1:154786243659:web:7fd6e43ec34c6f54b399ce",
+      measurementId: "G-62G9V71PPJ"
+    };
+
+    // Firebase Initialize karein
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Form Handle
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      const btn = document.getElementById('login-btn');
+
+      btn.innerText = "LOGGING IN...";
+      btn.disabled = true;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("Login Successful!");
+        // Successful login ke baad jahan redirect karna ho wahan link badal dein:
+        // window.location.href = "dashboard.html";
+      } catch (error) {
+        alert("Error: " + error.message);
+        btn.innerText = "LOG IN";
+        btn.disabled = false;
+      }
+    });
+  </script>
 
 </body>
 </html>
