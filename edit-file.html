@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudchate - Edit Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .glass-box {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+    .glass-input-3d {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body class="bg-[#0b0f19] text-white min-h-screen flex flex-col font-sans relative overflow-x-hidden p-4 md:p-8">
+
+  <!-- Background Ambient Glows -->
+  <div class="fixed top-1/4 left-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-[130px] opacity-20 pointer-events-none"></div>
+  <div class="fixed bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-blue-600 rounded-full mix-blend-screen filter blur-[140px] opacity-20 pointer-events-none"></div>
+
+  <!-- Header -->
+  <header class="max-w-xl mx-auto w-full flex items-center justify-between mb-6">
+    <a href="profile.html" class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors text-xs font-semibold">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+      <span>Back</span>
+    </a>
+    <h1 class="text-base font-bold">Edit Profile</h1>
+    <div class="w-10"></div>
+  </header>
+
+  <!-- Main Edit Form Container -->
+  <main class="max-w-xl mx-auto w-full flex-1 flex flex-col justify-center">
+    <div class="glass-card rounded-3xl p-6 md:p-8 border border-white/15 space-y-6">
+      
+      <!-- Avatar Section -->
+      <div class="flex flex-col items-center space-y-3">
+        <div id="edit-avatar" class="w-20 h-20 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center font-bold text-3xl shadow-xl border-2 border-white/40">
+          U
+        </div>
+        <button class="text-xs text-blue-400 hover:text-blue-300 font-semibold">Change Profile Photo</button>
+      </div>
+
+      <!-- Form Inputs -->
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Name</label>
+          <input 
+            type="text" 
+            id="name-input" 
+            placeholder="Enter your name" 
+            class="glass-input-3d w-full px-4 py-3 rounded-xl text-xs text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+          >
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Email (Read Only)</label>
+          <input 
+            type="email" 
+            id="email-input" 
+            disabled
+            class="glass-input-3d w-full px-4 py-3 rounded-xl text-xs text-gray-400 outline-none cursor-not-allowed opacity-75"
+          >
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1.5">Bio</label>
+          <textarea 
+            id="bio-input" 
+            rows="3" 
+            placeholder="Write something about yourself..." 
+            class="glass-input-3d w-full px-4 py-3 rounded-xl text-xs text-white placeholder-gray-500 outline-none focus:ring-2 focus:ring-blue-500/50 transition-all resize-none"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex space-x-3 pt-2">
+        <a href="profile.html" class="w-1/2 text-center py-3 rounded-xl border border-white/10 text-xs font-semibold text-gray-300 hover:bg-white/5 transition-colors">
+          Cancel
+        </a>
+        <button 
+          id="save-btn" 
+          class="w-1/2 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-xs font-bold text-white shadow-lg shadow-blue-500/30 hover:opacity-90 transition-opacity"
+        >
+          Save Changes
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Firebase Script for Updating Profile -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC7iWZ0SfKWjii-zJXYZ7HPn9T38W3UIvA",
+      authDomain: "cloudchate.firebaseapp.com",
+      projectId: "cloudchate",
+      storageBucket: "cloudchate.firebasestorage.app",
+      messagingSenderId: "154786243659",
+      appId: "1:154786243659:web:7fd6e43ec34c6f54b399ce",
+      measurementId: "G-62G9V71PPJ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const nameInput = document.getElementById('name-input');
+    const emailInput = document.getElementById('email-input');
+    const bioInput = document.getElementById('bio-input');
+    const editAvatar = document.getElementById('edit-avatar');
+    const saveBtn = document.getElementById('save-btn');
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const name = user.displayName || user.email.split('@')[0];
+        nameInput.value = name;
+        emailInput.value = user.email;
+        editAvatar.innerText = name.charAt(0).toUpperCase();
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+
+    saveBtn.addEventListener('click', () => {
+      const newName = nameInput.value.trim();
+      if (!newName) {
+        alert("Name cannot be empty!");
+        return;
+      }
+
+      const user = auth.currentUser;
+      if (user) {
+        updateProfile(user, {
+          displayName: newName
+        }).then(() => {
+          alert("Profile updated successfully!");
+          window.location.href = "profile.html";
+        }).catch((error) => {
+          alert("Error updating profile: " + error.message);
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
