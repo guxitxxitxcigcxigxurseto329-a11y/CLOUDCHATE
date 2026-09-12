@@ -51,12 +51,21 @@
   <main class="max-w-xl mx-auto w-full flex-1 flex flex-col justify-center">
     <div class="glass-card rounded-3xl p-6 md:p-8 border border-white/15 space-y-6">
       
-      <!-- Avatar Section -->
+      <!-- Avatar Section with Image Upload -->
       <div class="flex flex-col items-center space-y-3">
-        <div id="edit-avatar" class="w-20 h-20 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center font-bold text-3xl shadow-xl border-2 border-white/40">
-          U
+        <div class="relative group cursor-pointer" onclick="document.getElementById('avatar-file-input').click()">
+          <div id="edit-avatar" class="w-24 h-24 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center font-bold text-3xl shadow-xl border-2 border-white/40 overflow-hidden">
+            <span id="avatar-text">U</span>
+            <img id="avatar-img" src="" alt="Profile Photo" class="w-full h-full object-cover hidden">
+          </div>
+          <div class="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          </div>
         </div>
-        <button class="text-xs text-blue-400 hover:text-blue-300 font-semibold">Change Profile Photo</button>
+
+        <!-- Hidden File Input -->
+        <input type="file" id="avatar-file-input" accept="image/*" class="hidden">
+        <button type="button" onclick="document.getElementById('avatar-file-input').click()" class="text-xs text-blue-400 hover:text-blue-300 font-semibold">Change Profile Photo</button>
       </div>
 
       <!-- Form Inputs -->
@@ -108,7 +117,7 @@
     </div>
   </main>
 
-  <!-- Firebase Script for Updating Profile -->
+  <!-- Firebase Script for Updating Profile with Photo -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -129,17 +138,43 @@
     const nameInput = document.getElementById('name-input');
     const emailInput = document.getElementById('email-input');
     const bioInput = document.getElementById('bio-input');
-    const editAvatar = document.getElementById('edit-avatar');
+    const avatarText = document.getElementById('avatar-text');
+    const avatarImg = document.getElementById('avatar-img');
+    const avatarFileInput = document.getElementById('avatar-file-input');
     const saveBtn = document.getElementById('save-btn');
+
+    let base64Image = "";
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const name = user.displayName || user.email.split('@')[0];
         nameInput.value = name;
         emailInput.value = user.email;
-        editAvatar.innerText = name.charAt(0).toUpperCase();
+
+        if (user.photoURL) {
+          avatarImg.src = user.photoURL;
+          avatarImg.classList.remove('hidden');
+          avatarText.classList.add('hidden');
+        } else {
+          avatarText.innerText = name.charAt(0).toUpperCase();
+        }
       } else {
         window.location.href = "index.html";
+      }
+    });
+
+    // Image selection handler
+    avatarFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(uploadEvent) {
+          base64Image = uploadEvent.target.result;
+          avatarImg.src = base64Image;
+          avatarImg.classList.remove('hidden');
+          avatarText.classList.add('hidden');
+        };
+        reader.readAsDataURL(file);
       }
     });
 
@@ -152,13 +187,21 @@
 
       const user = auth.currentUser;
       if (user) {
-        updateProfile(user, {
-          displayName: newName
-        }).then(() => {
+        saveBtn.innerText = "Saving...";
+        saveBtn.disabled = true;
+
+        const updateData = { displayName: newName };
+        if (base64Image) {
+          updateData.photoURL = base64Image;
+        }
+
+        updateProfile(user, updateData).then(() => {
           alert("Profile updated successfully!");
           window.location.href = "profile.html";
         }).catch((error) => {
           alert("Error updating profile: " + error.message);
+          saveBtn.innerText = "Save Changes";
+          saveBtn.disabled = false;
         });
       }
     });
