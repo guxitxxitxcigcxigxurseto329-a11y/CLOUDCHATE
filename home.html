@@ -110,13 +110,13 @@
       <div class="glass-card rounded-2xl p-4 flex space-x-4 overflow-x-auto no-scrollbar border border-white/10">
         
         <!-- Current User Story Add -->
-        <div class="flex flex-col items-center space-y-1 flex-shrink-0 cursor-pointer">
+        <a href="add.html" class="flex flex-col items-center space-y-1 flex-shrink-0 cursor-pointer">
           <div class="relative w-14 h-14 rounded-full border-2 border-dashed border-blue-400 p-0.5 flex items-center justify-center hover:scale-105 transition-transform">
             <div id="story-avatar-my" class="w-full h-full rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center font-bold text-sm">U</div>
             <span class="absolute bottom-0 right-0 w-4 h-4 bg-blue-500 border-2 border-[#0b0f19] rounded-full flex items-center justify-center text-[10px] font-bold">+</span>
           </div>
           <span class="text-[11px] text-gray-300 truncate w-16 text-center">Your Story</span>
-        </div>
+        </a>
 
         <!-- Sample Friend Stories -->
         <div class="flex flex-col items-center space-y-1 flex-shrink-0 cursor-pointer">
@@ -297,33 +297,33 @@
     <div class="max-w-md mx-auto flex items-center justify-around">
       
       <!-- Home Button -->
-      <button onclick="window.location.href='home.html'" title="Home" class="flex flex-col items-center text-blue-400 transition-transform active:scale-95">
+      <a href="home.html" title="Home" class="flex flex-col items-center text-blue-400 transition-transform active:scale-95">
         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
         <span class="text-[10px] font-medium mt-0.5">Home</span>
-      </button>
+      </a>
 
       <!-- Message Button -->
-      <button onclick="window.location.href='chat.html'" title="Messages" class="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors active:scale-95 relative">
+      <a href="chat.html" title="Messages" class="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors active:scale-95 relative">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
         <span class="absolute top-0 right-2 w-2 h-2 bg-blue-500 rounded-full"></span>
         <span class="text-[10px] font-medium mt-0.5">Message</span>
-      </button>
+      </a>
 
-      <!-- Add Post Button -->
-      <button title="Add Post" class="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors active:scale-95">
+      <!-- Add Post Button (FIXED: Linked to add.html) -->
+      <a href="add.html" title="Add Post" class="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors active:scale-95">
         <div class="w-9 h-9 -mt-3 bg-gradient-to-tr from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-lg border border-white/40">
           <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
         </div>
         <span class="text-[10px] font-medium mt-0.5">Add</span>
-      </button>
+      </a>
 
       <!-- Profile Button -->
-      <button onclick="window.location.href='profile.html'" title="Profile" class="flex flex-col items-center text-gray-400 hover:text-white transition-colors active:scale-95">
+      <a href="profile.html" title="Profile" class="flex flex-col items-center text-gray-400 hover:text-white transition-colors active:scale-95">
         <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 border border-white/60 flex items-center justify-center text-[10px] font-bold text-white shadow-sm">
           <span id="nav-user-avatar">U</span>
         </div>
         <span class="text-[10px] font-medium mt-0.5">Profile</span>
-      </button>
+      </a>
 
     </div>
   </nav>
