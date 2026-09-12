@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudchate - Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Main Outer 3D Glass Container */
+    .glass-box {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Glass Cards */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Bottom 3D Glass Navigation Bar */
+    .glass-nav-3d {
+      background: rgba(11, 15, 25, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Hide Scrollbar */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="bg-[#0b0f19] text-white min-h-screen flex flex-col font-sans relative overflow-x-hidden pb-20 md:pb-0">
+
+  <!-- Background Ambient Glows -->
+  <div class="fixed top-1/4 left-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-[130px] opacity-20 pointer-events-none"></div>
+  <div class="fixed bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-blue-600 rounded-full mix-blend-screen filter blur-[140px] opacity-20 pointer-events-none"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 glass-box border-b border-white/10 px-4 py-3">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <a href="home.html" class="flex items-center space-x-3 cursor-pointer">
+        <div class="w-10 h-10 bg-gradient-to-tr from-blue-500 via-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg border border-white/30">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+        </div>
+        <h1 class="text-2xl font-black tracking-widest bg-gradient-to-r from-blue-400 via-indigo-200 to-purple-400 bg-clip-text text-transparent">
+          Cloudchate
+        </h1>
+      </a>
+      <button id="logout-btn" class="text-xs font-semibold bg-red-500/20 text-red-400 border border-red-500/30 px-3 py-1.5 rounded-xl hover:bg-red-500/30 transition-colors">
+        Logout
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN PROFILE LAYOUT -->
+  <main class="max-w-4xl mx-auto w-full flex-1 p-4 md:py-6 space-y-6">
+
+    <!-- PROFILE HEADER CARD -->
+    <div class="glass-card rounded-3xl p-6 border border-white/10">
+      <div class="flex flex-col sm:flex-row items-center gap-6">
+        
+        <!-- Avatar -->
+        <div id="profile-avatar" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center font-bold text-4xl shadow-xl border-2 border-white/40 flex-shrink-0">
+          U
+        </div>
+
+        <!-- Info & Stats -->
+        <div class="flex-1 text-center sm:text-left space-y-4 w-full">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h2 id="profile-name" class="text-xl font-bold tracking-wide">Loading...</h2>
+              <p id="profile-email" class="text-xs text-gray-400">user@cloudchate.com</p>
+            </div>
+            <button class="bg-blue-500/20 text-blue-300 border border-blue-500/40 hover:bg-blue-500/30 text-xs px-4 py-2 rounded-xl transition-all self-center sm:self-auto">
+              Edit Profile
+            </button>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="flex justify-around sm:justify-start sm:gap-8 pt-3 border-t border-white/10 text-center">
+            <div>
+              <span class="block text-base font-bold text-white">12</span>
+              <span class="text-[11px] text-gray-400">Posts</span>
+            </div>
+            <div>
+              <span class="block text-base font-bold text-white">342</span>
+              <span class="text-[11px] text-gray-400">Followers</span>
+            </div>
+            <div>
+              <span class="block text-base font-bold text-white">189</span>
+              <span class="text-[11px] text-gray-400">Following</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- POSTS TABS -->
+    <div class="flex border-b border-white/10 text-xs font-semibold justify-center gap-8">
+      <button class="pb-3 border-b-2 border-blue-400 text-blue-400">POSTS</button>
+      <button class="pb-3 text-gray-400 hover:text-white transition-colors">SAVED</button>
+      <button class="pb-3 text-gray-400 hover:text-white transition-colors">TAGGED</button>
+    </div>
+
+    <!-- USER POSTS GRID -->
+    <div class="grid grid-cols-3 gap-2 sm:gap-4">
+      <div class="aspect-square glass-card rounded-xl overflow-hidden bg-gradient-to-tr from-blue-900/40 to-purple-900/40 border border-white/10 flex items-center justify-center hover:opacity-80 transition-opacity cursor-pointer">
+        <span class="text-xs text-gray-400 font-medium">Post 1</span>
+      </div>
+      <div class="aspect-square glass-card rounded-xl overflow-hidden bg-gradient-to-tr from-indigo-900/40 to-blue-900/40 border border-white/10 flex items-center justify-center hover:opacity-80 transition-opacity cursor-pointer">
+        <span class="text-xs text-gray-400 font-medium">Post 2</span>
+      </div>
+      <div class="aspect-square glass-card rounded-xl overflow-hidden bg-gradient-to-tr from-purple-900/40 to-pink-900/40 border border-white/10 flex items-center justify-center hover:opacity-80 transition-opacity cursor-pointer">
+        <span class="text-xs text-gray-400 font-medium">Post 3</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- BOTTOM NAVIGATION BAR -->
+  <nav class="fixed bottom-0 left-0 right-0 z-50 glass-nav-3d px-6 py-2.5">
+    <div class="max-w-md mx-auto flex items-center justify-around">
+      
+      <!-- Home -->
+      <a href="home.html" title="Home" class="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors active:scale-95">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        <span class="text-[10px] font-medium mt-0.5">Home</span>
+      </a>
+
+      <!-- Message -->
+      <a href="chat.html" title="Messages" class="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors active:scale-95">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+        <span class="text-[10px] font-medium mt-0.5">Message</span>
+      </a>
+
+      <!-- Add Post -->
+      <a href="add.html" title="Add Post" class="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors active:scale-95">
+        <div class="w-9 h-9 -mt-3 bg-gradient-to-tr from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-lg border border-white/40">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+        </div>
+        <span class="text-[10px] font-medium mt-0.5">Add</span>
+      </a>
+
+      <!-- Profile Active -->
+      <a href="profile.html" title="Profile" class="flex flex-col items-center text-blue-400 transition-transform active:scale-95">
+        <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 border border-blue-400 flex items-center justify-center text-[10px] font-bold text-white shadow-sm">
+          <span id="nav-user-avatar">U</span>
+        </div>
+        <span class="text-[10px] font-medium mt-0.5">Profile</span>
+      </a>
+
+    </div>
+  </nav>
+
+  <!-- Firebase Auth Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC7iWZ0SfKWjii-zJXYZ7HPn9T38W3UIvA",
+      authDomain: "cloudchate.firebaseapp.com",
+      projectId: "cloudchate",
+      storageBucket: "cloudchate.firebasestorage.app",
+      messagingSenderId: "154786243659",
+      appId: "1:154786243659:web:7fd6e43ec34c6f54b399ce",
+      measurementId: "G-62G9V71PPJ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const name = user.displayName || user.email.split('@')[0];
+        const initial = name.charAt(0).toUpperCase();
+
+        document.getElementById('profile-name').innerText = name;
+        document.getElementById('profile-email').innerText = user.email;
+        document.getElementById('profile-avatar').innerText = initial;
+        document.getElementById('nav-user-avatar').innerText = initial;
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      signOut(auth).then(() => {
+        window.location.href = "index.html";
+      });
+    });
+  </script>
+
+</body>
+</html>
