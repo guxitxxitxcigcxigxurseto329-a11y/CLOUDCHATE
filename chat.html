@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudchate - Messages</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* 3D Glass Styling */
+    .glass-box {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    .glass-input-3d {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .glass-nav-3d {
+      background: rgba(11, 15, 25, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Custom Scrollbar */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 10px; }
+  </style>
+</head>
+<body class="bg-[#0b0f19] text-white min-h-screen flex flex-col font-sans relative overflow-x-hidden pb-20 md:pb-0">
+
+  <!-- Background Ambient Glows -->
+  <div class="fixed top-1/4 left-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-[130px] opacity-20 pointer-events-none"></div>
+  <div class="fixed bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-blue-600 rounded-full mix-blend-screen filter blur-[140px] opacity-20 pointer-events-none"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 glass-box border-b border-white/10 px-4 py-3">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="home.html" class="flex items-center space-x-3 cursor-pointer">
+        <div class="w-10 h-10 bg-gradient-to-tr from-blue-500 via-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg border border-white/30">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+        </div>
+        <h1 class="text-2xl font-black tracking-widest bg-gradient-to-r from-blue-400 via-indigo-200 to-purple-400 bg-clip-text text-transparent">
+          Cloudchate
+        </h1>
+      </a>
+      <div class="flex items-center space-x-2">
+        <span class="text-xs bg-blue-500/20 text-blue-300 border border-blue-500/30 px-3 py-1 rounded-full font-semibold">Direct Messages</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CHAT CONTAINER -->
+  <main class="max-w-6xl mx-auto w-full flex-1 p-4 md:py-6">
+    <div class="glass-card rounded-3xl border border-white/10 h-[calc(100vh-140px)] flex overflow-hidden">
+      
+      <!-- CHAT SIDEBAR (USERS LIST) -->
+      <div id="chat-sidebar" class="w-full md:w-80 border-r border-white/10 flex flex-col bg-white/[0.02]">
+        
+        <!-- Search Bar -->
+        <div class="p-4 border-b border-white/10">
+          <input 
+            type="text" 
+            placeholder="Search chats..." 
+            class="glass-input-3d w-full px-4 py-2 rounded-xl text-xs text-white placeholder-gray-400 outline-none"
+          >
+        </div>
+
+        <!-- Online / Active Users Horizontal List -->
+        <div class="p-3 border-b border-white/10 flex space-x-3 overflow-x-auto no-scrollbar">
+          <div class="flex flex-col items-center flex-shrink-0 cursor-pointer">
+            <div class="relative w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-xs">
+              A
+              <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border border-[#0b0f19] rounded-full"></span>
+            </div>
+            <span class="text-[10px] text-gray-300 mt-1">aman</span>
+          </div>
+          <div class="flex flex-col items-center flex-shrink-0 cursor-pointer">
+            <div class="relative w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-xs">
+              R
+              <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border border-[#0b0f19] rounded-full"></span>
+            </div>
+            <span class="text-[10px] text-gray-300 mt-1">rohit</span>
+          </div>
+          <div class="flex flex-col items-center flex-shrink-0 cursor-pointer">
+            <div class="relative w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center font-bold text-xs">
+              P
+            </div>
+            <span class="text-[10px] text-gray-300 mt-1">priya</span>
+          </div>
+        </div>
+
+        <!-- Chat History List -->
+        <div class="flex-1 overflow-y-auto divide-y divide-white/5">
+          
+          <!-- Chat Item 1 (Active) -->
+          <div onclick="selectUser('aman_sky', 'A', 'bg-purple-600')" class="p-4 flex items-center space-x-3 bg-white/10 border-l-4 border-blue-500 cursor-pointer transition-all hover:bg-white/10">
+            <div class="relative w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center font-bold text-sm shadow-md flex-shrink-0">
+              A
+              <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#0b0f19] rounded-full"></span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex justify-between items-baseline">
+                <h4 class="text-xs font-bold text-white truncate">aman_sky</h4>
+                <span class="text-[10px] text-gray-400">12:45 PM</span>
+              </div>
+              <p class="text-[11px] text-gray-300 truncate mt-0.5">Hey bro! Code check kar lo ek baar.</p>
+            </div>
+          </div>
+
+          <!-- Chat Item 2 -->
+          <div onclick="selectUser('rohit_ui', 'R', 'bg-indigo-600')" class="p-4 flex items-center space-x-3 hover:bg-white/5 cursor-pointer transition-all">
+            <div class="relative w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-sm shadow-md flex-shrink-0">
+              R
+              <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#0b0f19] rounded-full"></span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex justify-between items-baseline">
+                <h4 class="text-xs font-bold text-white truncate">rohit_ui</h4>
+                <span class="text-[10px] text-gray-400">Yesterday</span>
+              </div>
+              <p class="text-[11px] text-gray-400 truncate mt-0.5">Glassmorphic UI design looks awesome!</p>
+            </div>
+          </div>
+
+          <!-- Chat Item 3 -->
+          <div onclick="selectUser('priya_dev', 'P', 'bg-pink-600')" class="p-4 flex items-center space-x-3 hover:bg-white/5 cursor-pointer transition-all">
+            <div class="relative w-12 h-12 rounded-full bg-pink-600 flex items-center justify-center font-bold text-sm shadow-md flex-shrink-0">
+              P
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex justify-between items-baseline">
+                <h4 class="text-xs font-bold text-white truncate">priya_dev</h4>
+                <span class="text-[10px] text-gray-400">2 days ago</span>
+              </div>
+              <p class="text-[11px] text-gray-400 truncate mt-0.5">Firebase integration completed?</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- MAIN CONVERSATION BOX -->
+      <div id="chat-main" class="hidden md:flex flex-1 flex-col bg-black/20">
+        
+        <!-- Active Chat Header -->
+        <div class="p-4 border-b border-white/10 flex items-center justify-between glass-box">
+          <div class="flex items-center space-x-3">
+            <button onclick="backToUsers()" class="md:hidden text-gray-300 hover:text-white mr-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <div id="active-chat-avatar" class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-xs shadow-md">
+              A
+            </div>
+            <div>
+              <h3 id="active-chat-name" class="font-bold text-xs text-white tracking-wide">aman_sky</h3>
+              <p class="text-[10px] text-green-400 font-medium">Online</p>
+            </div>
+          </div>
+          <button class="text-gray-400 hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
+          </button>
+        </div>
+
+        <!-- Messages Flow Area -->
+        <div id="messages-container" class="flex-1 p-4 overflow-y-auto space-y-4">
+          
+          <!-- Message Received -->
+          <div class="flex items-end space-x-2">
+            <div class="w-7 h-7 rounded-full bg-purple-600 flex items-center justify-center font-bold text-[10px] shadow-sm mb-1">A</div>
+            <div class="max-w-xs md:max-w-md glass-card p-3 rounded-2xl rounded-bl-none text-xs text-gray-200 border border-white/10">
+              <p>Hey bro! Cloudchate ka real-time chat UI kaisa lag raha hai?</p>
+              <span class="text-[9px] text-gray-400 block text-right mt-1">12:44 PM</span>
+            </div>
+          </div>
+
+          <!-- Message Sent -->
+          <div class="flex items-end justify-end space-x-2">
+            <div class="max-w-xs md:max-w-md bg-gradient-to-r from-blue-600 to-indigo-600 p-3 rounded-2xl rounded-br-none text-xs text-white shadow-lg">
+              <p>Bahut badhiya lag raha hai! 🚀 Full 3D Glassmorphism theme ekdam smooth hai.</p>
+              <span class="text-[9px] text-blue-200 block text-right mt-1">12:45 PM</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-4 border-t border-white/10 glass-box">
+          <form id="chat-form" class="flex items-center space-x-3">
+            <input 
+              id="message-input"
+              type="text" 
+              placeholder="Type a message..." 
+              autocomplete="off"
+              class="glass-input-3d flex-1 px-4 py-2.5 rounded-xl text-xs text-white placeholder-gray-400 outline-none focus:ring-1 focus:ring-blue-400/50"
+            >
+            <button 
+              type="submit" 
+              class="w-10 h-10 bg-gradient-to-tr from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 rounded-xl flex items-center justify-center text-white shadow-md active:scale-95 transition-all flex-shrink-0"
+            >
+              <svg class="w-5 h-5 transform rotate-90" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- BOTTOM NAVIGATION BAR -->
+  <nav class="fixed bottom-0 left-0 right-0 z-50 glass-nav-3d px-6 py-2.5">
+    <div class="max-w-md mx-auto flex items-center justify-around">
+      <button onclick="window.location.href='home.html'" title="Home" class="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors active:scale-95">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        <span class="text-[10px] font-medium mt-0.5">Home</span>
+      </button>
+
+      <button onclick="window.location.href='chat.html'" title="Messages" class="flex flex-col items-center text-blue-400 transition-transform active:scale-95 relative">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+        <span class="text-[10px] font-medium mt-0.5">Message</span>
+      </button>
+
+      <button title="Add Post" class="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors active:scale-95">
+        <div class="w-9 h-9 -mt-3 bg-gradient-to-tr from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-lg border border-white/40">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+        </div>
+        <span class="text-[10px] font-medium mt-0.5">Add</span>
+      </button>
+
+      <button onclick="window.location.href='profile.html'" title="Profile" class="flex flex-col items-center text-gray-400 hover:text-white transition-colors active:scale-95">
+        <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 border border-white/60 flex items-center justify-center text-[10px] font-bold text-white shadow-sm">
+          <span id="nav-user-avatar">U</span>
+        </div>
+        <span class="text-[10px] font-medium mt-0.5">Profile</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Firebase Auth & Chat Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC7iWZ0SfKWjii-zJXYZ7HPn9T38W3UIvA",
+      authDomain: "cloudchate.firebaseapp.com",
+      projectId: "cloudchate",
+      storageBucket: "cloudchate.firebasestorage.app",
+      messagingSenderId: "154786243659",
+      appId: "1:154786243659:web:7fd6e43ec34c6f54b399ce",
+      measurementId: "G-62G9V71PPJ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const name = user.displayName || user.email.split('@')[0];
+        const initial = name.charAt(0).toUpperCase();
+        document.getElementById('nav-user-avatar').innerText = initial;
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+
+    // Dynamic UI Handlers
+    window.selectUser = function(username, initial, bgClass) {
+      document.getElementById('active-chat-name').innerText = username;
+      const avatarElem = document.getElementById('active-chat-avatar');
+      avatarElem.innerText = initial;
+      avatarElem.className = `w-10 h-10 rounded-full ${bgClass} flex items-center justify-center font-bold text-xs shadow-md`;
+      
+      // On mobile view toggle screens
+      if (window.innerWidth < 768) {
+        document.getElementById('chat-sidebar').classList.add('hidden');
+        document.getElementById('chat-main').classList.remove('hidden');
+        document.getElementById('chat-main').classList.add('flex');
+      }
+    };
+
+    window.backToUsers = function() {
+      document.getElementById('chat-sidebar').classList.remove('hidden');
+      document.getElementById('chat-main').classList.add('hidden');
+      document.getElementById('chat-main').classList.remove('flex');
+    };
+
+    // Messaging Logic
+    const chatForm = document.getElementById('chat-form');
+    const messageInput = document.getElementById('message-input');
+    const messagesContainer = document.getElementById('messages-container');
+
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = messageInput.value.trim();
+      if (!text) return;
+
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      // Create Sent Message Element
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'flex items-end justify-end space-x-2';
+      msgDiv.innerHTML = `
+        <div class="max-w-xs md:max-w-md bg-gradient-to-r from-blue-600 to-indigo-600 p-3 rounded-2xl rounded-br-none text-xs text-white shadow-lg">
+          <p>${text}</p>
+          <span class="text-[9px] text-blue-200 block text-right mt-1">${timeStr}</span>
+        </div>
+      `;
+
+      messagesContainer.appendChild(msgDiv);
+      messageInput.value = '';
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    });
+  </script>
+</body>
+</html>
