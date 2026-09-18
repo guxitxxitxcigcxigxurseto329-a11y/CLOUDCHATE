@@ -202,15 +202,15 @@
     import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    // Aapki Firebase Configuration Keys
+    // ✅ NAYE PROJECT KI FIREBASE CONFIGURATION (cloudchate-44486)
     const firebaseConfig = {
-      apiKey: "AIzaSyC7iWZ0SfKWjii-zJXYZ7HPn9T38W3UIvA",
-      authDomain: "cloudchate.firebaseapp.com",
-      projectId: "cloudchate",
-      storageBucket: "cloudchate.firebasestorage.app",
-      messagingSenderId: "154786243659",
-      appId: "1:154786243659:web:7fd6e43ec34c6f54b399ce",
-      measurementId: "G-62G9V71PPJ"
+      apiKey: "AIzaSyB0bRp3V_z1gXY5W7sUytNHTuTNs1skTus",
+      authDomain: "cloudchate-44486.firebaseapp.com",
+      projectId: "cloudchate-44486",
+      storageBucket: "cloudchate-44486.firebasestorage.app",
+      messagingSenderId: "920350199651",
+      appId: "1:920350199651:web:77aa99e697a83cdbb70d56",
+      measurementId: "G-XTENJ653J6"
     };
 
     // Firebase Initialize
@@ -258,7 +258,7 @@
         });
 
         alert("Account Successfully Ban Gaya!");
-        window.location.href = "index.html";
+        window.location.href = "index.html"; // Login Page Par Redirect
       } catch (error) {
         alert("Error: " + error.message);
         btn.innerText = "CREATE ACCOUNT";
