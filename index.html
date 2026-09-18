@@ -153,7 +153,7 @@
   <!-- Firebase Integration Script -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getAuth, signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
     // ✅ NAYE PROJECT KI FIREBASE CONFIGURATION (cloudchate-44486)
     const firebaseConfig = {
@@ -182,8 +182,9 @@
       btn.disabled = true;
 
       try {
+        // ✅ Session ko browser local storage mein save karne ke liye persistence enable ki gayi hai
+        await setPersistence(auth, browserLocalPersistence);
         await signInWithEmailAndPassword(auth, email, password);
-        alert("Login Successful!");
         
         // Successful Login ke baad Home Page par redirect
         window.location.href = "home.html";
