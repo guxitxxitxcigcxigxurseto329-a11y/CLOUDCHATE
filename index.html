@@ -108,12 +108,12 @@
         
         <div>
           <label class="block text-xs font-bold mb-2 ml-1 uppercase tracking-wide glass-text-3d">
-           INTER YOUR Gmail
+            ENTER YOUR GMAIL
           </label>
           <input 
             type="email" 
             id="login-email"
-            placeholder="Gmail, Phone, Username daalein" 
+            placeholder="Apni Email ID daalein" 
             class="glass-input-3d w-full px-4 py-4 rounded-2xl text-sm text-white placeholder-gray-400 outline-none"
             required
           >
@@ -150,27 +150,27 @@
 
   </div>
 
- <!-- Firebase Integration Script -->
+  <!-- Firebase Integration Script -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-    // Aapki Firebase Configuration Keys
+    // ✅ NAYE PROJECT KI FIREBASE CONFIGURATION (cloudchate-44486)
     const firebaseConfig = {
-      apiKey: "AIzaSyC7iWZ0SfKWjii-zJXYZ7HPn9T38W3UIvA",
-      authDomain: "cloudchate.firebaseapp.com",
-      projectId: "cloudchate",
-      storageBucket: "cloudchate.firebasestorage.app",
-      messagingSenderId: "154786243659",
-      appId: "1:154786243659:web:7fd6e43ec34c6f54b399ce",
-      measurementId: "G-62G9V71PPJ"
+      apiKey: "AIzaSyB0bRp3V_z1gXY5W7sUytNHTuTNs1skTus",
+      authDomain: "cloudchate-44486.firebaseapp.com",
+      projectId: "cloudchate-44486",
+      storageBucket: "cloudchate-44486.firebasestorage.app",
+      messagingSenderId: "920350199651",
+      appId: "1:920350199651:web:77aa99e697a83cdbb70d56",
+      measurementId: "G-XTENJ653J6"
     };
 
-    // Firebase Initialize karein
+    // Firebase Initialize
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // Form Handle
+    // Form Submit Event
     document.getElementById('login-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       
@@ -185,7 +185,7 @@
         await signInWithEmailAndPassword(auth, email, password);
         alert("Login Successful!");
         
-        // 👉 YAHAN PAR BADLAAV KIYA GAYA HAI 👈
+        // Successful Login ke baad Home Page par redirect
         window.location.href = "home.html";
 
       } catch (error) {
