@@ -292,7 +292,7 @@
 
   </main>
 
-  <!-- BOTTOM NAVIGATION BAR (Home, Message, Add, Profile) -->
+  <!-- BOTTOM NAVIGATION BAR -->
   <nav class="fixed bottom-0 left-0 right-0 z-50 glass-nav-3d px-6 py-2.5">
     <div class="max-w-md mx-auto flex items-center justify-around">
       
@@ -309,7 +309,7 @@
         <span class="text-[10px] font-medium mt-0.5">Message</span>
       </a>
 
-      <!-- Add Post Button (FIXED: Linked to add.html) -->
+      <!-- Add Post Button -->
       <a href="add.html" title="Add Post" class="flex flex-col items-center text-gray-400 hover:text-blue-400 transition-colors active:scale-95">
         <div class="w-9 h-9 -mt-3 bg-gradient-to-tr from-blue-500 to-indigo-600 rounded-full flex items-center justify-center shadow-lg border border-white/40">
           <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
@@ -333,14 +333,15 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
+    // ✅ NAYE PROJECT KI FIREBASE CONFIGURATION (cloudchate-44486)
     const firebaseConfig = {
-      apiKey: "AIzaSyC7iWZ0SfKWjii-zJXYZ7HPn9T38W3UIvA",
-      authDomain: "cloudchate.firebaseapp.com",
-      projectId: "cloudchate",
-      storageBucket: "cloudchate.firebasestorage.app",
-      messagingSenderId: "154786243659",
-      appId: "1:154786243659:web:7fd6e43ec34c6f54b399ce",
-      measurementId: "G-62G9V71PPJ"
+      apiKey: "AIzaSyB0bRp3V_z1gXY5W7sUytNHTuTNs1skTus",
+      authDomain: "cloudchate-44486.firebaseapp.com",
+      projectId: "cloudchate-44486",
+      storageBucket: "cloudchate-44486.firebasestorage.app",
+      messagingSenderId: "920350199651",
+      appId: "1:920350199651:web:77aa99e697a83cdbb70d56",
+      measurementId: "G-XTENJ653J6"
     };
 
     const app = initializeApp(firebaseConfig);
