@@ -331,7 +331,7 @@
   <!-- Firebase Auth & Home Interactions Script -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
     // ✅ NAYE PROJECT KI FIREBASE CONFIGURATION (cloudchate-44486)
     const firebaseConfig = {
@@ -348,8 +348,9 @@
     const auth = getAuth(app);
     let currentUserDisplayName = "User";
 
-    // Check Login State
-    onAuthStateChanged(auth, (user) => {
+    // ✅ auth.authStateReady() use kiya taaki Firebase session detect karne ka pura time le
+    auth.authStateReady().then(() => {
+      const user = auth.currentUser;
       if (user) {
         currentUserDisplayName = user.displayName || user.email.split('@')[0];
         const initial = currentUserDisplayName.charAt(0).toUpperCase();
@@ -359,7 +360,7 @@
         document.getElementById('story-avatar-my').innerText = initial;
         document.getElementById('nav-user-avatar').innerText = initial;
       } else {
-        // Redirect to Login if unauthenticated
+        // Agar sach mein user logged-in nahi hai, tabhi login page par redirect karein
         window.location.href = "index.html";
       }
     });
@@ -381,36 +382,40 @@
     const likeIcon = document.getElementById('like-icon');
     const likeCountElem = document.getElementById('like-count');
 
-    likeBtn.addEventListener('click', () => {
-      isLiked = !isLiked;
-      if (isLiked) {
-        likesCount++;
-        likeIcon.setAttribute('fill', '#ef4444');
-        likeBtn.classList.add('text-red-500');
-        likeBtn.classList.remove('text-gray-300');
-      } else {
-        likesCount--;
-        likeIcon.setAttribute('fill', 'none');
-        likeBtn.classList.remove('text-red-500');
-        likeBtn.classList.add('text-gray-300');
-      }
-      likeCountElem.innerText = `${likesCount.toLocaleString()} likes`;
-    });
+    if(likeBtn) {
+      likeBtn.addEventListener('click', () => {
+        isLiked = !isLiked;
+        if (isLiked) {
+          likesCount++;
+          likeIcon.setAttribute('fill', '#ef4444');
+          likeBtn.classList.add('text-red-500');
+          likeBtn.classList.remove('text-gray-300');
+        } else {
+          likesCount--;
+          likeIcon.setAttribute('fill', 'none');
+          likeBtn.classList.remove('text-red-500');
+          likeBtn.classList.add('text-gray-300');
+        }
+        likeCountElem.innerText = `${likesCount.toLocaleString()} likes`;
+      });
+    }
 
     // Bookmark Toggle
     let isSaved = false;
     const bookmarkBtn = document.getElementById('bookmark-btn');
     const bookmarkIcon = document.getElementById('bookmark-icon');
-    bookmarkBtn.addEventListener('click', () => {
-      isSaved = !isSaved;
-      if (isSaved) {
-        bookmarkIcon.setAttribute('fill', '#eab308');
-        bookmarkBtn.classList.add('text-yellow-400');
-      } else {
-        bookmarkIcon.setAttribute('fill', 'none');
-        bookmarkBtn.classList.remove('text-yellow-400');
-      }
-    });
+    if(bookmarkBtn) {
+      bookmarkBtn.addEventListener('click', () => {
+        isSaved = !isSaved;
+        if (isSaved) {
+          bookmarkIcon.setAttribute('fill', '#eab308');
+          bookmarkBtn.classList.add('text-yellow-400');
+        } else {
+          bookmarkIcon.setAttribute('fill', 'none');
+          bookmarkBtn.classList.remove('text-yellow-400');
+        }
+      });
+    }
 
     // Comment Posting Logic
     const commentInput = document.getElementById('comment-input');
@@ -418,11 +423,14 @@
     const commentsContainer = document.getElementById('comments-container');
     const commentFocusBtn = document.getElementById('comment-focus-btn');
 
-    commentFocusBtn.addEventListener('click', () => {
-      commentInput.focus();
-    });
+    if(commentFocusBtn && commentInput) {
+      commentFocusBtn.addEventListener('click', () => {
+        commentInput.focus();
+      });
+    }
 
     function addComment() {
+      if(!commentInput || !commentsContainer) return;
       const text = commentInput.value.trim();
       if (text) {
         const commentDiv = document.createElement('p');
@@ -433,10 +441,14 @@
       }
     }
 
-    postCommentBtn.addEventListener('click', addComment);
-    commentInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') addComment();
-    });
+    if(postCommentBtn) {
+      postCommentBtn.addEventListener('click', addComment);
+    }
+    if(commentInput) {
+      commentInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addComment();
+      });
+    }
   </script>
 
 </body>
